@@ -4,8 +4,8 @@ import axios from 'axios';
 
 export default function Register() {
     let myHistory = useHistory();
-    const[firstname,setFirstname]=useState('');
-    const[lastname,setLastname] = useState('');
+    const[username,setUsername]=useState('');
+    
     const[emailid,setEmailid] = useState('');
     const[password,setPassword]= useState('');
     const[confirmpassword, setConfirmPassword] = useState('');
@@ -22,10 +22,11 @@ export default function Register() {
                 'Content-Type': 'application/json'
         }
         }).then((res)=>{
+            console.log("Response for error : ", res);
             myHistory.push('/login');
         }).catch(err =>{ 
-            console.log(err);
-            alert(err);
+            console.log(err.response.data);
+            //alert(err);
         });
             
         }
@@ -36,55 +37,49 @@ export default function Register() {
 
 
     return (
-        <div className ="container">
-            <div className="row centered-form">
-                <div className="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-                    <div className="panel panel-default">
-        		        <div className="panel-heading">
-                            <h3 className="panel-title">Please sign up for IQAir <small>It's free!</small></h3>
-                        </div>
-                        <div className="panel-body">
-                            <form role="form" onSubmit={(e) => signUp(e)} >
-                                <div className="row">
-                                    <div className="col-xs-6 col-sm-6 col-md-6">
-                                        <div className="form-group">
-                                            <input type="text" id="firstname" className="form-control input-sm" placeholder="First Name"
-                                            onChange = {(event) =>{setFirstname(event.target.value)}} required></input>
-                                        </div>
-                                    </div>
-                                    <div className="col-xs-6 col-sm-6 col-md-6">
-			    					<div className="form-group">
-			    						<input type="text" id="lastname" className="form-control input-sm" placeholder="Last Name"
-                                        onChange = {(event) =>{setLastname(event.target.value)}} required></input>
-			    					</div>
-			    				</div>
-                                <div className="form-group">
-			    				    <input type="email"  id="emailid" className="form-control input-sm" placeholder="Email Address"
-                                    onChange = {(event) =>{setEmailid(event.target.value)}} required></input>
-			    			    </div>
-                                <div className="row">
-			    				<div className="col-xs-6 col-sm-6 col-md-6">
-			    					<div className="form-group">
-			    						<input type="password" id="password" className="form-control input-sm" placeholder="Password"
-                                        onChange = {(event) =>{setPassword(event.target.value)}} required></input>
-			    					</div>
-			    				</div>
-			    				<div className="col-xs-6 col-sm-6 col-md-6">
-			    					<div className="form-group">
-                                    <input type="text" id="confirmpassword" className="form-control input-sm" placeholder="Confirm Password"
-                                    onChange = {(event) =>{setConfirmPassword(event.target.value)}} required></input>
-			    					</div>
-			    				</div>
-			    			</div>
-                            </div>
-                            <input type="submit" value="Register" className="btn btn-info btn-block"></input>
-                                     
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <body style ={{marginTop :"-100px"}}>
+        <div className="container">
+    <div className="card card-login mx-auto text-center bg-dark">
+        <div className="card-header mx-auto bg-dark">
+            <span className="logo_title mt-5"> Registration Form </span>
         </div>
+        <div className="card-body">
+            <form onSubmit={(e) => signUp(e)} >
+                <div className="input-group form-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text"><i className="fas fa-user"></i></span>
+                    </div>
+                <input type="text" name="username" id ="username" className="form-control" placeholder="Username"
+                onChange = {(event) =>{setUsername(event.target.value)}} required/>
+                </div>
+                <div className="input-group form-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text"><i className="fas fa-envelope-square"></i></span>
+                    </div>
+                    <input type="text" name="email" id ="emailid" className="form-control" placeholder="Email id"
+                    onChange = {(event) =>{setEmailid(event.target.value)}} required/>
+                </div>
+                <div className="input-group form-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" 
+                    onChange = {(event) =>{setPassword(event.target.value)}} required/>
+                </div>
+                <div className="input-group form-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="confirmpassword" id="confirmpassword" className="form-control" placeholder="Confirm Password" 
+                    onChange = {(event) =>{setConfirmPassword(event.target.value)}} required/>
+                </div>
+                <div className="form-group">
+                    <input type="submit" name="btn" value="Register" className="btn btn-outline-danger float-center login_btn"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
     )
 }

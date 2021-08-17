@@ -9,6 +9,9 @@ import notfound from './Components/notfound/NotFound';
 import PrivateRoute from './PrivateRoute'
 import Header from './Components/header/Header';
 import Footer from './Components/footer/Footer';
+import States from './Components/states/States';
+import City from './Components/city/City';
+import CityDetails from './Components/city/CityDetails';
 
 class App extends React.Component{
   render(){
@@ -22,6 +25,9 @@ class App extends React.Component{
               <Route exact path="/register" component={Register}/>  
               <PrivateRoute  path="/dashboard" component={Dashboard}/>
               <PrivateRoute  path="/watchedcity" component={Dashboard}/>
+              <Route exact path ="/state/:countryname" component = {States}/>
+              <Route exact path ="/city/:countryname/:statename" component ={City}/>
+              <Route exact path ="/citydetails/:cityname" component ={CityDetails}/>
               <Route component={notfound}/>
           </Switch>
           <Footer></Footer>

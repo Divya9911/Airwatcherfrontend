@@ -3,14 +3,11 @@ body {
 }
 .card {
     border: 1px solid #28a745;
-	margin-top:0px;
-	
 }
 .card-login {
     margin-top: 130px;
     padding: 18px;
     max-width: 30rem;
-	
 }
 
 .card-header {

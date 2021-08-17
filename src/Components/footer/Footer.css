@@ -1,7 +1,14 @@
 .clsdiv{
-    background-color: green;
+    
     width :100%;
     bottom : 0px;
-    position :fixed;
+    position :relative;
     text-align:center;
 }
+
+/* .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+} */
