@@ -12,22 +12,23 @@ import Footer from './Components/footer/Footer';
 import States from './Components/states/States';
 import City from './Components/city/City';
 import CityDetails from './Components/city/CityDetails';
+import Favourite from './Components/favourite/Favourite';
 
 class App extends React.Component{
   render(){
     return(
       <div>
         <Router>
-          <Header></Header>
+          
           <Switch>    
               <Route exact path="/" component={Home}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/register" component={Register}/>  
               <PrivateRoute  path="/dashboard" component={Dashboard}/>
-              <PrivateRoute  path="/watchedcity" component={Dashboard}/>
+              <PrivateRoute  path="/favouriteCity" component={Favourite}/>
               <Route exact path ="/state/:countryname" component = {States}/>
               <Route exact path ="/city/:countryname/:statename" component ={City}/>
-              <Route exact path ="/citydetails/:cityname" component ={CityDetails}/>
+              <Route exact path ="/citydetails/:cityname/:statename/:countryname" component ={CityDetails}/>
               <Route component={notfound}/>
           </Switch>
           <Footer></Footer>

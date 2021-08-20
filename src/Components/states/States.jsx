@@ -3,6 +3,7 @@ import React, {useState,useEffect} from 'react';
 import StateCard from '../card/StateCard';
 
 import { useParams} from 'react-router-dom';
+import Header from '../header/Header';
 
 export default function States() {
     let idparam = useParams();
@@ -22,7 +23,9 @@ export default function States() {
 
     return (
         <div>
-            <h1 style ={{color:"blue", textAlign:"center", marginTop:"10px"}}>States of country {idparam.countryname}</h1>
+        <Header></Header>
+        <div>
+            <h1 style ={{color:"blue", textAlign:"center", marginTop:"30px"}}>States of country {idparam.countryname}</h1>
             <div className = "col-md-12">
                     {
                         <h1>{statedata.map((s)=>
@@ -32,6 +35,7 @@ export default function States() {
                         </h1>
                     }
                 </div>  
+        </div>
         </div>
     )
 }

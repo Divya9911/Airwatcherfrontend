@@ -1,7 +1,8 @@
 import {React,useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
+import Header from '../header/Header';
+import { validEmail, validPassword} from '../Regex';
 export default function Register() {
     let myHistory = useHistory();
     const[username,setUsername]=useState('');
@@ -9,36 +10,51 @@ export default function Register() {
     const[emailid,setEmailid] = useState('');
     const[password,setPassword]= useState('');
     const[confirmpassword, setConfirmPassword] = useState('');
+    const [emailErr, setEmailErr] = useState(false);
+   const [pwdError, setPwdError] = useState(false);
+
 
     const signUp = (e) =>{
         e.preventDefault();
-        if(password == confirmpassword){
-            // console.log(password);
-            // console.log(confirmpassword);
-            // console.log(password == confirmpassword)
-            axios.post('http://localhost:9092/auth/user/adduser',
-            {emailid,password},{
-            headers:{
-                'Content-Type': 'application/json'
-        }
-        }).then((res)=>{
-            console.log("Response for error : ", res);
-            myHistory.push('/login');
-        }).catch(err =>{ 
-            console.log(err.response.data);
-            //alert(err);
-        });
-            
-        }
-        else{
-            alert("password mismatch");
+        if (!validEmail.test(emailid)) {
+            console.log("inavlid email");
+            setEmailErr(true);
+         }
+         if (!validPassword.test(password)) {
+             console.log("invalid password");
+            setPwdError(true);
+         }
+         console.log(emailErr != 'true' &&  pwdError != 'true');
+         if(emailErr != 'true' &&  pwdError != 'true'){
+            console.log(emailErr != 'true' &&  pwdError != 'true'); 
+            if(password == confirmpassword ){
+                // console.log(password);
+                // console.log(confirmpassword);
+                // console.log(password == confirmpassword)
+                axios.post('http://localhost:9092/auth/user/adduser',
+                {emailid,password},{
+                headers:{
+                    'Content-Type': 'application/json'
+            }
+            }).then((res)=>{
+                console.log("Response for success: ", res);
+                myHistory.push('/login');
+            }).catch(err =>{ 
+                console.log(err.response.data);
+                alert(err.response.data);
+            });
+                
+            }
+            else{
+                alert("password mismatch");
+            }
         }
     }
 
-
     return (
-        <body style ={{marginTop :"-100px"}}>
-        <div className="container">
+        <body>
+        <Header></Header>
+        <div className="container" style ={{marginTop :"-100px"}}>
     <div className="card card-login mx-auto text-center bg-dark">
         <div className="card-header mx-auto bg-dark">
             <span className="logo_title mt-5"> Registration Form </span>
@@ -76,9 +92,13 @@ export default function Register() {
                 <div className="form-group">
                     <input type="submit" name="btn" value="Register" className="btn btn-outline-danger float-center login_btn"/>
                 </div>
+                
+                {emailErr && <p style ={{color:"red"}}>Email is invalid(sample email abc@gmail.com)</p>}
+                {pwdError && <p style ={{color:"red"}}>Password is invalid(It should contains atleast one Capital letter,small alphabet, specialcharacter, digit </p>}
             </form>
         </div>
     </div>
+
 </div>
 </body>
     )

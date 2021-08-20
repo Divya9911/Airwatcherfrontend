@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
+import './StateCard.css';
 
 export default function StateCard(props) {
     const[statename, setStatename] =useState('');
@@ -18,14 +19,10 @@ export default function StateCard(props) {
 
 
     return (
-        <main class="grid">
-            <article >
-            
-            <div class="text">
-            <h3 style={{color:"white", textAlign:"center" }}>{props.statename}</h3>
-            <button onClick = {()=>goToCityCard(props.statename,props.countryname)}>View</button>
-            </div>
-        </article>
-    </main>
+        <div className = "stateCard">
+            <h2 style ={{textAlign : "center"}}>{props.statename}</h2>
+            <button onClick = {()=>goToCityCard(props.statename,props.countryname)}
+            class="btn btn-primary" style={{marginLeft:"50px"}}>View City</button>
+        </div>
     )
 }

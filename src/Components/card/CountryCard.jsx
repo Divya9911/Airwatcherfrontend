@@ -16,14 +16,9 @@ export default function CountryCard(props) {
     },[props.countryname]);
     
     return (
-        <main class="grid">
-            <article >
-            
-            <div class="text">
-            <h3 style={{color:"white", textAlign:"center" }}>{props.countryname}</h3>
-            <button onClick = {()=> goToStateCard(props.countryname)}>View</button>
-            </div>
-        </article>
-    </main>
+        <div className = "countryCard">
+            <h2 style ={{textAlign : "center"}}>{props.countryname}</h2>
+            <button onClick = {()=> goToStateCard(props.countryname)} className = "btn btn-primary statebutton" style={{marginLeft:"50px"}}>View State</button>
+        </div>
     )
 }

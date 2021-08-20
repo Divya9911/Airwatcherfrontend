@@ -8,10 +8,10 @@ export default function PrivateRoute({component : Component,...restall})
     return (<Route {...restall} render={
       (routeprops)=>
       {
-    return    localStorage.getItem("isAuthenticated")==="true"?
+    return    sessionStorage.getItem("isAuthenticated")==="true"?
    ( <Component {...routeprops} />)
                :
-       (<Redirect to="/login"/>)
+       (<Redirect to="/"/>)
       }
     }
     />);    

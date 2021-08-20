@@ -3,6 +3,7 @@ import React from 'react';
 import {Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.css'
+import Header from '../header/Header';
 
 export default function Login() {
     let myHistory = useHistory();
@@ -22,18 +23,24 @@ export default function Login() {
         }
         }).then((res)=>{
             console.log(res);
-            localStorage.setItem('myToken',res.data.token);
-            localStorage.setItem('isAuthenticated',"true");
-            localStorage.setItem('emailid',emailid);
-            localStorage.setItem('username',username);
-            //console.log("Token : ",res.data.token);
+            // localStorage.setItem('mytoken',res.data.token);
+            // localStorage.setItem('isAuthenticated',"true");
+            // localStorage.setItem('emailid',emailid);
+            // localStorage.setItem('username',username);
+            // console.log("Token : ",res.data.token);
+            sessionStorage.setItem('mytoken',res.data.token);
+            sessionStorage.setItem('isAuthenticated',"true");
+            sessionStorage.setItem('emailid',emailid);
+            sessionStorage.setItem('username',username);
             myHistory.push('/dashboard');
         })
-        .catch(err => console.log(err))
+        .catch(err => {console.log(err.response.data);
+        alert(err.response.data)});
     }
     return (
-        <body style ={{marginTop :"-50px"}}>
-        <div className="container">
+        <body>
+        <Header></Header>
+        <div className="container"  style ={{marginTop :"-70px"}}>
     <div className="card card-login mx-auto text-center bg-dark">
         <div className="card-header mx-auto bg-dark">
             <span className="logo_title mt-5"> Login Dashboard </span>

@@ -1,0 +1,13 @@
+.favouriteCard {
+    width: 15rem;
+    margin: 2rem;
+    margin-left :10%;
+    display: inline-block;
+    flex-direction:column;
+    background-color: #D3D3D3;
+    padding: 1rem;
+    position: relative;
+    border-radius: 0.5rem;
+    flex-wrap: wrap;
+    box-shadow: 1rem 2rem 4rem #aaa;
+  }

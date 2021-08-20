@@ -1,0 +1,26 @@
+.heading{
+    /* margin-left :30%;*/
+    margin-top:5%; 
+    text-align : center;
+    color :#FF00FF;
+    
+    
+}
+
+/* .table{
+    padding: 100%;
+} */
+.padded tr.first td { padding-top:10px; }
+    .padded tr.last td { padding-bottom:10px; }
+    .padded td.first { padding-left:10px; }
+    .padded td.last { padding-right:10px; }
+
+.table td{
+    color: #fefae0;
+    padding-left :100%;
+}
+
+.table th{
+    color:#00FFFF;
+}
+
